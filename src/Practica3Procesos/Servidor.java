@@ -33,8 +33,9 @@ public class Servidor {
             
             private ArrayList<Thread> lanzarHilos(ArrayList<Socket> sockets){
                 ArrayList<Thread> hilos = new ArrayList<>();
+                GestorDeTareas gestor = new GestorDeTareas(hilos.size());
                 for (Socket socket : sockets) {
-                    Thread hilo = new Thread(new HiloServidor(socket));
+                    Thread hilo = new Thread(new HiloServidor(socket, gestor));
                     hilo.run();
                     hilos.add(hilo);
                 }                

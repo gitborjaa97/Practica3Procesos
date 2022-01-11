@@ -14,21 +14,21 @@ import java.util.logging.Logger;
 public class HiloServidor implements Runnable{
 
     private Socket socket;
+    private GestorDeTareas gestor;
 
-    public HiloServidor(Socket socket) {
+    public HiloServidor(Socket socket, GestorDeTareas gestor) {
         this.socket = socket;
+        this.gestor = gestor;
     }
     
     @Override
     public void run() {
         ObjectOutputStream enviar = getWriter(socket);
         
-        try {
-            enviar.writeObject(new Tarea());
-            enviar.flush();
-        } catch (IOException ex) {
-            Logger.getLogger(HiloServidor.class.getName()).log(Level.SEVERE, null, ex);
+        while (true) {            
+            
         }
+        
     }
     
     private static BufferedReader getReader(Socket s) {
@@ -48,5 +48,14 @@ public class HiloServidor implements Runnable{
             System.out.println(ex);
         }
         return oos;
+    }
+    
+    private static void enviarTarea(ObjectOutputStream enviar){
+        try {
+            enviar.writeObject(new Tarea());
+            enviar.flush();
+        } catch (IOException ex) {
+            Logger.getLogger(HiloServidor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }
