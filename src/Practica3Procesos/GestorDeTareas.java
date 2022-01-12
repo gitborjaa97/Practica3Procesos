@@ -37,11 +37,13 @@ public class GestorDeTareas {
     }
 
     public synchronized void resultadoDeTarea(boolean result) {
-        tareaValida = result;
         if (result) {
-
+            //Añade la tarea realizada al la lista de tareas y vuelve a entrar 
+            //a enviarTarea para pedir una nueva tarea
         } else {
-
+            //Comprueba si la tarea es longitud 1 si es asi recibe una tarea de duracion 0
+            //y se muere. Si no es asi espera a que todos los hilos terminen o que uno de ellos
+            //reciba una tarea valida
         }
     }
 
